@@ -9,9 +9,11 @@
 
 namespace WebAPI.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations.Schema;
+    using System.Runtime.Serialization;
 
     public partial class Order
     {
@@ -31,6 +33,9 @@ namespace WebAPI.Models
         public string DeletedOrderItemIDs { get; set; }
 
         public virtual Customer Customer { get; set; }
+
+        [JsonIgnore]
+        [IgnoreDataMember]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderItem> OrderItems { get; set; }
     }
